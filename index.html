@@ -7,6 +7,14 @@
     <title>Vite + React + TS</title>
   </head>
   <body>
+    <script>
+      // AWS Amplify needs this to work.
+      const isBrowser = () => typeof window !== "undefined";
+      const isGlobal = () => typeof global !== "undefined";
+      if (!isGlobal() && isBrowser()) {
+        var global = window;
+      }
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
