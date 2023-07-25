@@ -7,6 +7,7 @@
     <title>Vite + React + TS</title>
   </head>
   <body>
+    <div id="root"></div>
     <script>
       // AWS Amplify needs this to work.
       const isBrowser = () => typeof window !== "undefined";
@@ -15,7 +16,6 @@
         var global = window;
       }
     </script>
-    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
