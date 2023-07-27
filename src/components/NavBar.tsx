@@ -7,7 +7,6 @@ function NavBar() {
     return (
         <>
             <div className='header'>
-                
             </div>
             <nav className='navbar'>
                 <ul className='navbar-list'>
