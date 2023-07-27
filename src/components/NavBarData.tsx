@@ -1,42 +1,24 @@
-import * as AiIcons from 'react-icons/ai'
 import * as FaIcons from 'react-icons/fa'
-import * as IoIcons from 'react-icons/io'
 
 export const NavBarData = [
     {
-        title: 'Home',
+        title: 'Dashboard',
         path: '/',
-        icon: <AiIcons.AiFillHome/>,
-        cName: 'nav-text'
+        icon: <FaIcons.FaHome/>,
     },
     {
-        title: 'Reports',
-        path: '/reports',
-        icon: <IoIcons.IoMdPaper/>,
-        cName: 'nav-text'
+        title: 'Applications',
+        path: '/applications',
+        icon: <FaIcons.FaDesktop/>,
     },
     {
-        title: 'Products',
-        path: '/products',
-        icon: <FaIcons.FaCartPlus/>,
-        cName: 'nav-text'
+        title: 'Domains',
+        path: '/domains',
+        icon: <FaIcons.FaNetworkWired/>,
     },
     {
-        title: 'Team',
-        path: '/team',
-        icon: <IoIcons.IoMdPeople/>,
-        cName: 'nav-text'
-    },
-    {
-        title: 'Messages',
-        path: '/messages',
-        icon: <FaIcons.FaEnvelopeOpenText/>,
-        cName: 'nav-text'
-    },
-    {
-        title: 'Support',
-        path: '/support',
-        icon: <IoIcons.IoMdAddCircle/>,
-        cName: 'nav-text'
+        title: 'Virtual Machines',
+        path: '/vm',
+        icon: <FaIcons.FaServer/>,
     },
 ]
