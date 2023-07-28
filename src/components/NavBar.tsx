@@ -6,8 +6,6 @@ import { NavBarData } from './NavBarData'
 function NavBar() {
     return (
         <>
-            <div className='header'>
-            </div>
             <nav className='navbar'>
                 <ul className='navbar-list'>
                     {NavBarData.map((item,index) => {
