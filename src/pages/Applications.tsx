@@ -1,7 +1,7 @@
 function Applications() {
     return (
         <>
-            <div className='content'>Applications</div>
+            <div className='content'>Applications coming soon...</div>
         </>
     )
 }

@@ -1,7 +1,7 @@
 function Dashboard() {
   return (
     <>
-      <div className='content'>Dashboard</div>
+      <div className='content'>Dashboard coming soon...</div>
     </>
   )
 }

@@ -1,7 +1,7 @@
 function VirtualMachines() {
     return (
         <>
-            <div className='content'>Virtual Machines</div>
+            <div className='content'>Virtual Machines coming soon...</div>
         </>
     )
 }

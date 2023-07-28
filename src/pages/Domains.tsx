@@ -1,7 +1,7 @@
 function Domains() {
     return (
         <>
-            <div className='content'>Domains</div>
+            <div className='content'>Domains coming soon...</div>
         </>
     )
 }

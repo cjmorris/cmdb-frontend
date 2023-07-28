@@ -4,10 +4,11 @@
   --header-height: 80px;
 
   /* Colors */
-  --default-background-color: #ece4b4;
-  --navbar-hover-color: #ffbf0e;
-  --navbar-text-color: #1f1c1c;
-  --content-background-color: #ffffff;
+  --default-background-color: #222A41;
+  --navbar-hover-background-color: #C74532;
+  --navbar-hover-text-color: #F9F9F8;
+  --navbar-text-color: #B6ABBD;
+  --content-background-color: #FFFFFF;
 }
 
 * {
@@ -24,6 +25,13 @@ html, body {
 .header {
   height: var(--header-height);
   display: flex;
+}
+
+.logo {
+  display: flex;
+  width: 250px;
+  justify-content: center;
+  align-items: center;
 }
 
 .app-body {
