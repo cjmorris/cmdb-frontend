@@ -1,7 +1,7 @@
+import '../styles/navbar.css'
 
 import { Link } from 'react-router-dom'
 import { NavBarData } from './NavBarData'
-
 
 function NavBar() {
     return (
@@ -13,7 +13,7 @@ function NavBar() {
                             <li key={index} className='navbar-item'>
                                 <Link to={item.path}>
                                     {item.icon}
-                                    <span>{item.title}</span>
+                                    <span className='navbar-title'>{item.title}</span>
                                 </Link>
                             </li>
                         )

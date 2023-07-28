@@ -1,6 +1,8 @@
 function Header() {
   return (
-    <div className='header'></div>
+    <header className='header'>
+        <img src='../../images/logo-full.png'></img>
+    </header>
   )
 }
 

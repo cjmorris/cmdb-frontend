@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:wght@300&display=swap');
+
+:root {
+  --header-height: 80px;
+
+  /* Colors */
+  --default-background-color: #ece4b4;
+  --navbar-hover-color: #ffbf0e;
+  --navbar-text-color: #1f1c1c;
+  --content-background-color: #ffffff;
+}
+
+* {
+  font-family: 'Poppins', Helvetica, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--default-background-color);
+}
+
+.header {
+  height: var(--header-height);
+  display: flex;
+}
+
+.app-body {
+  display: flex;
+}
+
+.content {
+  flex-grow: 1;
+  background-color: var(--content-background-color);
+}
