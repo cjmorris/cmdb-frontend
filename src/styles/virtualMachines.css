@@ -1,0 +1,25 @@
+.vm-grid {
+    display: grid;
+    gap: 50px;
+    padding-top: 30px;
+    grid-template-columns: auto auto auto;
+}
+
+.vm-grid-item {
+    height: 50px;
+}
+
+.vm-label {
+    display: block;
+}
+
+.vm-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px grey solid;
+}
+
+.vm-input:focus {
+    outline: none;
+    border-bottom: 1px black solid;
+}
