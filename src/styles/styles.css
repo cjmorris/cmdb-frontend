@@ -8,7 +8,13 @@
   --navbar-hover-background-color: #C74532;
   --navbar-hover-text-color: #F9F9F8;
   --navbar-text-color: #B6ABBD;
-  --content-background-color: #FFFFFF;
+  --content-background-color: #F6F6fD;
+  --content-text-color: #212529;
+  --description-text-color: #B4B4B4;
+  --input-background-color: #FFFFFF;
+  --button-color: #FFCE00;
+  --button-hover-color: #F2C300;
+  --button-click-color: #EAB400;
 }
 
 * {
@@ -41,7 +47,32 @@ html, body {
 .content {
   flex-grow: 1;
   background-color: var(--content-background-color);
+  color: var(--content-text-color);
   margin: 0px 20px 20px 0px;
   padding: 30px;
   border-radius: 5px;
+}
+
+.description {
+  color: var(--description-text-color);
+}
+
+.button {
+  border: none;
+  background-color: var(--button-color);
+  height: 50px;
+  width: 100px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  float: right;
+}
+
+.button:hover{
+  cursor: pointer;
+  background-color: var(--button-hover-color);
+}
+
+.button:active {
+  background-color: var(--button-click-color);
+  outline: 3px rgba(225, 188, 0, 0.33) solid;
 }
