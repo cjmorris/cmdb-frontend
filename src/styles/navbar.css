@@ -1,5 +1,5 @@
 .navbar {
-    width: 250px;
+    width: var(--navbar-width);
     height: calc(100vh - var(--header-height));
     display: inline-flex;
     justify-content: center;

@@ -16,12 +16,14 @@ function App() {
         <Header/>
         <div className='app-body'>
           <NavBar/>
-          <Routes>
-            <Route path='/' Component={Dashboard}/>
-            <Route path='/applications' Component={Applications}/>
-            <Route path='/domains' Component={Domains}/>
-            <Route path='/vm' Component={VirtualMachines}/>
-          </Routes>
+          <div className='standard-widget'>
+            <Routes>
+              <Route path='/' Component={Dashboard}/>
+              <Route path='/applications' Component={Applications}/>
+              <Route path='/domains' Component={Domains}/>
+              <Route path='/vm' Component={VirtualMachines}/>
+            </Routes>
+          </div>
         </div>
       </BrowserRouter>
     </>
