@@ -7,12 +7,16 @@ import Applications from './pages/Applications';
 import Domains from './pages/Domains';
 import VirtualMachines from './pages/VirtualMachines';
 import Header from './components/Header';
+import Login from './pages/Login';
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
+        <Routes>
+          <Route path='/login' Component={Login}/>
+        </Routes>
         <Header/>
         <div className='app-body'>
           <NavBar/>
