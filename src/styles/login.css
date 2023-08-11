@@ -1,0 +1,16 @@
+.login-page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-widget {
+    width: 600px;
+    height: 280px;
+}
+
+.login-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}

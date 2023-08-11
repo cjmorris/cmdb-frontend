@@ -1,3 +1,5 @@
+import '../styles/login.css'
+
 import { useState } from "react";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import UserPool from "../components/UserPool";
@@ -6,9 +8,7 @@ function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-
+    function onSubmit(){
         const user = new CognitoUser({
             Username: email,
             Pool: UserPool,
@@ -33,20 +33,35 @@ function Login() {
     }
 
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <label htmlFor="email">Email</label>
-                <input 
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                ></input>
-                <label htmlFor="password">Password</label>
-                <input 
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                ></input>
-                <button type="submit">Login</button>
-            </form>
+        <div className='login-page'>
+            <div className='login-widget'>
+                <div className='content'>
+                    <h2>Login</h2>
+                    <div className='grid login-grid'>
+                        <div className='grid-item'>
+                            <label className='label' htmlFor="email">Email</label>
+                            <input 
+                                className='input'
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
+                                type='text' 
+                                placeholder='john.doe@mail.com'
+                            ></input>
+                        </div>
+                        <div className='grid-item'>
+                            <label className='label' htmlFor="password">Password</label>
+                            <input 
+                                className='input'
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)}
+                                type='password' 
+                                placeholder='john.doe@mail.com'
+                            ></input>
+                        </div>
+                    </div>
+                    <button className='button' type="submit" onClick={onSubmit}>Login</button>
+                </div>  
+            </div>
         </div>
     )   
 }
