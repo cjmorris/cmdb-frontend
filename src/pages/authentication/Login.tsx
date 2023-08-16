@@ -1,14 +1,14 @@
-import '../styles/login.css'
+import '../../styles/authentication.css'
 
 import { useState } from "react";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
-import UserPool from "../components/UserPool";
+import UserPool from "../../components/UserPool";
 
 function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    function onSubmit(){
+    function authenticate(){
         const user = new CognitoUser({
             Username: email,
             Pool: UserPool,
@@ -44,7 +44,7 @@ function Login() {
                                 className='input'
                                 value={email}
                                 onChange={(event) => setEmail(event.target.value)}
-                                type='text' 
+                                type='text'
                                 placeholder='john.doe@mail.com'
                             ></input>
                         </div>
@@ -55,11 +55,11 @@ function Login() {
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                                 type='password' 
-                                placeholder='john.doe@mail.com'
+                                placeholder='password'
                             ></input>
                         </div>
                     </div>
-                    <button className='button' type="submit" onClick={onSubmit}>Login</button>
+                    <button className='button' type="submit" onClick={authenticate}>Login</button>
                 </div>  
             </div>
         </div>

@@ -7,7 +7,8 @@ import Applications from './pages/Applications';
 import Domains from './pages/Domains';
 import VirtualMachines from './pages/VirtualMachines';
 import Header from './components/Header';
-import Login from './pages/Login';
+import Login from './pages/authentication/Login';
+import SignUp from './pages/authentication/SignUp';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/login' Component={Login}/>
+          <Route path='/signup' Component={SignUp}/>
         </Routes>
         <Header/>
         <div className='app-body'>
