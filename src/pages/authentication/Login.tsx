@@ -33,33 +33,35 @@ function Login() {
     }
 
     return (
-        <div className='login-page'>
-            <div className='login-widget'>
+        <div className='auth-page'>
+            <div className='auth-widget'>
                 <div className='content'>
-                    <h2>Login</h2>
-                    <div className='grid login-grid'>
-                        <div className='grid-item'>
-                            <label className='label' htmlFor="email">Email</label>
+                    <div className='center-content'>
+                        <h2>Login</h2>
+                    </div>
+                    <div className='grid auth-grid'>
+                        <div className='grid-item auth-grid-item'>
                             <input 
                                 className='input'
                                 value={email}
                                 onChange={(event) => setEmail(event.target.value)}
                                 type='text'
-                                placeholder='john.doe@mail.com'
+                                placeholder='Email Address'
                             ></input>
                         </div>
-                        <div className='grid-item'>
-                            <label className='label' htmlFor="password">Password</label>
+                        <div className='grid-item auth-grid-item'>
                             <input 
                                 className='input'
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                                 type='password' 
-                                placeholder='password'
+                                placeholder='Password'
                             ></input>
                         </div>
                     </div>
-                    <button className='button' type="submit" onClick={authenticate}>Login</button>
+                    <div className='center-content'>
+                        <button className='button' type="submit" onClick={authenticate}>Login</button>
+                    </div>
                 </div>  
             </div>
         </div>

@@ -1,4 +1,4 @@
-.login-page {
+.auth-page {
     height: 100vh;
     width: 100%;
     display: flex;
@@ -6,11 +6,16 @@
     align-items: center;
 }
 
-.login-widget {
-    width: 600px;
-    height: 280px;
+.auth-widget {
+    width: 400px;
+    height: auto;
+    justify-content: center;
 }
 
-.login-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.auth-grid {
+    grid-template-columns: auto;
+}
+
+.auth-grid-item {
+    height: 75px;
 }
