@@ -7,8 +7,23 @@ import UserPool from "../../components/UserPool";
 
 
 function SignUp() {
+    const MINIMUM_PASSWORD_LENGTH = 8
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [passwordSubmitInvalid, setPasswordSubmitInvalid] = useState(false)
+
+    function verifyPasswordComplexity(currentPassword: string){
+        if(containsLowercaseCharacter(currentPassword) &&
+        containsUppercaseCharacter(currentPassword) &&
+        containsNumber(currentPassword) &&
+        containsSpecialCharacter(currentPassword) &&
+        currentPassword.length >= MINIMUM_PASSWORD_LENGTH){
+            setPasswordSubmitInvalid(false)
+            return true
+        }else{
+            return false
+        }
+    }
 
     function containsLowercaseCharacter(str: string){
         for(let i = 0;i<str.length;i++){
@@ -46,15 +61,22 @@ function SignUp() {
       }
 
     function requestSignUp(){
-        
-        // UserPool.signUp(email, password, [], [], function(err, result){
-        //     if (err) {
-        //         alert(err);
-        //         return;
-        //     }
-        //     let cognitoUser = result?.user;
-        //     console.log('user name is ' + cognitoUser?.getUsername());
-        // });
+        const isPasswordAllowed = verifyPasswordComplexity(password)
+        if(!isPasswordAllowed){
+            const passwordInput = document.getElementById('signup-password');
+            passwordInput?.focus();
+            setPasswordSubmitInvalid(true);
+            return
+        }else {
+            UserPool.signUp(email, password, [], [], function(err, result){
+                if (err) {
+                    alert(err);
+                    return;
+                }
+                let cognitoUser = result?.user;
+                console.log('user name is ' + cognitoUser?.getUsername());
+            });
+        }
     }
 
     return (
@@ -76,16 +98,20 @@ function SignUp() {
                         </div>
                         <div className='grid-item auth-grid-item'>
                             <input 
-                                className='input'
+                                id='signup-password'
+                                className={passwordSubmitInvalid ? 'input input-invalid' : 'input'}
                                 value={password}
-                                onChange={(event) => setPassword(event.target.value)}
+                                onChange={(event) => {
+                                    setPassword(event.target.value)
+                                    verifyPasswordComplexity(event.target.value)
+                                }}
                                 type='password' 
                                 placeholder='Password'
                             ></input>
                             <ul className='password-criteria'>
-                                {password.length >= 8 
-                                    ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>8 characters minimum</span></li>
-                                    : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>8 characters minimum</span></li>
+                                {password.length >= MINIMUM_PASSWORD_LENGTH 
+                                    ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>{MINIMUM_PASSWORD_LENGTH} characters minimum</span></li>
+                                    : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>{MINIMUM_PASSWORD_LENGTH} characters minimum</span></li>
                                 }
                                 {containsUppercaseCharacter(password) 
                                     ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>One uppercase character</span></li>
