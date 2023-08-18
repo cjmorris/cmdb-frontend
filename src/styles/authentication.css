@@ -17,5 +17,17 @@
 }
 
 .auth-grid-item {
-    height: 75px;
+    min-height: 75px;
+}
+
+.password-criteria {
+    font-size: 12px;
+    font-style: italic;
+    list-style-type: none;
+    padding: 10px 0px 10px 0px;
+}
+
+.password-criteria-item {
+    display: flex;
+    align-items: center;
 }
