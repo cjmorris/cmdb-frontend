@@ -10,6 +10,7 @@ function SignUp() {
     const MINIMUM_PASSWORD_LENGTH = 8
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [emailSubmitInvalid, setEmailSubmitInvalid] = useState(false)
     const [passwordSubmitInvalid, setPasswordSubmitInvalid] = useState(false)
 
     function verifyPasswordComplexity(currentPassword: string){
@@ -19,6 +20,17 @@ function SignUp() {
         containsSpecialCharacter(currentPassword) &&
         currentPassword.length >= MINIMUM_PASSWORD_LENGTH){
             setPasswordSubmitInvalid(false)
+            return true
+        }else{
+            return false
+        }
+    }
+
+    function validateEmail(currentEmail: string){
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/
+        const isEmailValid = emailRegex.test(currentEmail)
+        if(isEmailValid){
+            setEmailSubmitInvalid(false)
             return true
         }else{
             return false
@@ -61,13 +73,21 @@ function SignUp() {
       }
 
     function requestSignUp(){
+        const isEmailValid = validateEmail(email)
         const isPasswordAllowed = verifyPasswordComplexity(password)
-        if(!isPasswordAllowed){
-            const passwordInput = document.getElementById('signup-password');
-            passwordInput?.focus();
-            setPasswordSubmitInvalid(true);
-            return
-        }else {
+        if(!isEmailValid || !isPasswordAllowed){
+            if(!isPasswordAllowed){
+                const passwordInput = document.getElementById('signup-password');
+                passwordInput?.focus();
+                setPasswordSubmitInvalid(true);
+            }
+            if(!isEmailValid){
+                const emailInput = document.getElementById('signup-email');
+                emailInput?.focus();
+                setEmailSubmitInvalid(true);
+            }
+        }
+        else {
             UserPool.signUp(email, password, [], [], function(err, result){
                 if (err) {
                     alert(err);
@@ -89,9 +109,13 @@ function SignUp() {
                     <div className='grid auth-grid'>
                         <div className='grid-item auth-grid-item'>
                             <input 
-                                className='input'
+                                id='signup-email'
+                                className={emailSubmitInvalid ? 'input input-invalid' : 'input'}
                                 value={email}
-                                onChange={(event) => setEmail(event.target.value)}
+                                onChange={(event) => {
+                                    setEmail(event.target.value)
+                                    validateEmail(event.target.value)
+                                }}
                                 type='email'
                                 placeholder='Email Address'
                             ></input>
