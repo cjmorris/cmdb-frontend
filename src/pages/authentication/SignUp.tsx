@@ -1,7 +1,6 @@
 import '../../styles/authentication.css'
 
 import { useState } from "react";
-import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import * as FaIcons from 'react-icons/fa6'
 import UserPool from "../../components/UserPool";
 import Verify from './Verify';
@@ -95,9 +94,8 @@ function SignUp() {
                     alert(err);
                     return;
                 }
-                let cognitoUser = result?.user;
                 setVerificationRequired(true)
-                console.log(result)
+                console.log(result);
             });
         }
     }

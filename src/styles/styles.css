@@ -57,6 +57,7 @@ html, body {
 .center-content {
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .description {
