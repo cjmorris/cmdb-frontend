@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import * as FaIcons from 'react-icons/fa6'
 import UserPool from "../../components/UserPool";
+import Verify from './Verify';
 
 
 function SignUp() {
@@ -12,6 +13,7 @@ function SignUp() {
     const [password, setPassword] = useState("")
     const [emailSubmitInvalid, setEmailSubmitInvalid] = useState(false)
     const [passwordSubmitInvalid, setPasswordSubmitInvalid] = useState(false)
+    const [verificationRequired, setVerificationRequired] = useState(false)
 
     function verifyPasswordComplexity(currentPassword: string){
         if(containsLowercaseCharacter(currentPassword) &&
@@ -94,7 +96,8 @@ function SignUp() {
                     return;
                 }
                 let cognitoUser = result?.user;
-                console.log('user name is ' + cognitoUser?.getUsername());
+                setVerificationRequired(true)
+                console.log(result)
             });
         }
     }
@@ -102,64 +105,71 @@ function SignUp() {
     return (
         <div className='auth-page'>
             <div className='auth-widget'>
-                <div className='content'>
-                    <div className='center-content'>
-                        <h2>Create a new account</h2>
-                    </div>
-                    <div className='grid auth-grid'>
-                        <div className='grid-item auth-grid-item'>
-                            <input 
-                                id='signup-email'
-                                className={emailSubmitInvalid ? 'input input-invalid' : 'input'}
-                                value={email}
-                                onChange={(event) => {
-                                    setEmail(event.target.value)
-                                    validateEmail(event.target.value)
-                                }}
-                                type='email'
-                                placeholder='Email Address'
-                            ></input>
-                        </div>
-                        <div className='grid-item auth-grid-item'>
-                            <input 
-                                id='signup-password'
-                                className={passwordSubmitInvalid ? 'input input-invalid' : 'input'}
-                                value={password}
-                                onChange={(event) => {
-                                    setPassword(event.target.value)
-                                    verifyPasswordComplexity(event.target.value)
-                                }}
-                                type='password' 
-                                placeholder='Password'
-                            ></input>
-                            <ul className='password-criteria'>
-                                {password.length >= MINIMUM_PASSWORD_LENGTH 
-                                    ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>{MINIMUM_PASSWORD_LENGTH} characters minimum</span></li>
-                                    : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>{MINIMUM_PASSWORD_LENGTH} characters minimum</span></li>
-                                }
-                                {containsUppercaseCharacter(password) 
-                                    ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>One uppercase character</span></li>
-                                    : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>One uppercase character</span></li>
-                                }
-                                {containsLowercaseCharacter(password) 
-                                    ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>One lowercase character</span></li>
-                                    : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>One lowercase character</span></li>
-                                }
-                                {containsNumber(password) 
-                                    ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>One number</span></li>
-                                    : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>One number</span></li>
-                                }
-                                {containsSpecialCharacter(password) 
-                                    ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>One special character</span></li>
-                                    : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>One special character</span></li>
-                                }
-                            </ul>
-                        </div>
+                {verificationRequired 
+                ?
+                    <Verify
+                        email={email}
+                    />
+                :
+                    <div className='content'>
                         <div className='center-content'>
-                            <button className='button' type="submit" onClick={requestSignUp}>Sign Up</button>
+                            <h2>Create a new account</h2>
                         </div>
-                    </div>
-                </div>  
+                        <div className='grid auth-grid'>
+                            <div className='grid-item auth-grid-item'>
+                                <input 
+                                    id='signup-email'
+                                    className={emailSubmitInvalid ? 'input input-invalid' : 'input'}
+                                    value={email}
+                                    onChange={(event) => {
+                                        setEmail(event.target.value)
+                                        validateEmail(event.target.value)
+                                    }}
+                                    type='email'
+                                    placeholder='Email Address'
+                                ></input>
+                            </div>
+                            <div className='grid-item auth-grid-item'>
+                                <input 
+                                    id='signup-password'
+                                    className={passwordSubmitInvalid ? 'input input-invalid' : 'input'}
+                                    value={password}
+                                    onChange={(event) => {
+                                        setPassword(event.target.value)
+                                        verifyPasswordComplexity(event.target.value)
+                                    }}
+                                    type='password' 
+                                    placeholder='Password'
+                                ></input>
+                                <ul className='password-criteria'>
+                                    {password.length >= MINIMUM_PASSWORD_LENGTH 
+                                        ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>{MINIMUM_PASSWORD_LENGTH} characters minimum</span></li>
+                                        : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>{MINIMUM_PASSWORD_LENGTH} characters minimum</span></li>
+                                    }
+                                    {containsUppercaseCharacter(password) 
+                                        ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>One uppercase character</span></li>
+                                        : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>One uppercase character</span></li>
+                                    }
+                                    {containsLowercaseCharacter(password) 
+                                        ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>One lowercase character</span></li>
+                                        : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>One lowercase character</span></li>
+                                    }
+                                    {containsNumber(password) 
+                                        ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>One number</span></li>
+                                        : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>One number</span></li>
+                                    }
+                                    {containsSpecialCharacter(password) 
+                                        ? <li className='password-criteria-item completed'><FaIcons.FaCheck/><span>One special character</span></li>
+                                        : <li className='password-criteria-item not-completed'><FaIcons.FaXmark/><span>One special character</span></li>
+                                    }
+                                </ul>
+                            </div>
+                            <div className='center-content'>
+                                <button className='button' type="submit" onClick={requestSignUp}>Sign Up</button>
+                            </div>
+                        </div>
+                    </div> 
+                }
             </div>
         </div>
     )   
